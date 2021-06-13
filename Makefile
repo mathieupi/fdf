@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/05 06:05:46 by mmehran           #+#    #+#              #
-#    Updated: 2021/06/14 00:58:51 by mmehran          ###   ########.fr        #
+#    Updated: 2021/06/14 01:34:12 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,11 @@ RM = rm -f
 LIBS = -L ./libft -lft -L minilibx/ -lmlx -lm
 
 OBJS = main.o hooks.o transform.o fdf.o draw.o
+OBJS_BONUS = main.o hooks_bonus.o transform.o fdf.o draw.o
+
+ifdef WITH_BONUS
+OBJS = $(OBJS_BONUS)
+endif
 
 $(NAME): $(OBJS)
 	make -C ./minilibx
@@ -40,5 +45,6 @@ fclean: clean
 re: clean all
 
 bonus:
+	$(MAKE) WITH_BONUS=1 all
 
 .PHONY: all clean fclean re bonus
