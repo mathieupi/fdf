@@ -6,7 +6,7 @@
 #    By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/05 06:05:46 by mmehran           #+#    #+#              #
-#    Updated: 2021/06/14 01:34:12 by mmehran          ###   ########.fr        #
+#    Updated: 2021/06/14 01:49:04 by mmehran          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,14 @@ all: $(NAME)
 
 clean:
 	make -C ./libft clean
-	$(RM) $(OBJS)
+	make -C ./minilibx clean
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
-fclean: clean
+fclean:
 	make -C ./libft fclean
-	$(RM) $(NAME)
+	make -C ./minilibx fclean
+	$(RM) $(NAME) libmlx.dylib
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 re: clean all
 
