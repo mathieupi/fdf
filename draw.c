@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:21:51 by mmehran           #+#    #+#             */
-/*   Updated: 2021/06/13 17:14:33 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/06/13 23:59:56 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	draw_line(t_data *data, t_point a, t_point b, int color)
 	i = 0;
 	delta_x = b.x - a.x;
 	delta_y = b.y - a.y;
-	step = fabs(delta_y);
-	if (fabs(delta_x) > fabs(delta_y))
-		step = fabs(delta_x);
+	step = abs(delta_y);
+	if (abs(delta_x) > abs(delta_y))
+		step = abs(delta_x);
 	while (i <= step)
 	{
 		my_mlx_pixel_put(data, a.x, a.y, color);

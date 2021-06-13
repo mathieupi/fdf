@@ -6,41 +6,38 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:21:38 by mmehran           #+#    #+#             */
-/*   Updated: 2021/06/13 15:42:26 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/06/14 00:01:57 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include "./libft/libft.h"
 #include "fdf.h"
+#include <unistd.h>
 #include <fcntl.h>
 
-void	parse_map_info(int fd, t_map *map)
+int	parse_map_info(int fd, t_map *map)
 {
 	char	*line;
 	int		x;
 	char	**point;
 	char	**p;
+	int		code;
 
-	map->x = 0;
-	map->y = 0;
+	code = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
 		x = 0;
 		point = ft_split(line, ' ');
 		p = point;
-		while (*p)
-		{
-			free(*p);
-			p++;
-			x++;
-		}
-		map->x = x;
-		map->y++;
+		while (*p && ++x)
+			free(*(p++));
 		free(line);
 		free(point);
+		if (map->x != 0 && x != map->x)
+			code = 1;
+		map->x = x;
+		map->y++;
 	}
+	return (code);
 }
 
 void	parse_map(int fd, t_map *map)
@@ -74,13 +71,26 @@ t_map	*get_map(char *file)
 {
 	int		fd;
 	t_map	*map;
+	int		code;
 
-	fd = open(file, 0);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+	{
+		write(2, "Error map doesn't exist :/\n", 4);
+		exit(0);
+	}
 	map = malloc(sizeof(t_map));
-	parse_map_info(fd, map);
+	map->x = 0;
+	map->y = 0;
+	code = parse_map_info(fd, map);
 	close(fd);
-	//printf("%d %d\n", map->x, map->y);
-	fd = open(file, 0);
+	if (code)
+	{
+		write(2, "Error map isn't a rectangle :/\n", 28);
+		free(map);
+		exit(0);
+	}
+	fd = open(file, O_RDONLY);
 	parse_map(fd, map);
 	close(fd);
 	return (map);
@@ -105,26 +115,15 @@ void	print_map(t_map *map)
 	}
 }
 
-/*void free_map(t_map *map)
-{
-	int **arr2 = map->map;
-	int i = 0;
-	while (i < map->y)
-	{
-		free(arr2[i]);
-		i++;
-	}
-	free(arr2);
-	free(map);
-} */
-
 int	main(int ac, char **av)
 {
 	t_map	*map;
 
 	if (ac != 2)
+	{
+		write(2, "Bad args :/, try something like: './fdf 42.fdf'\n", 48);
 		return (0);
+	}
 	map = get_map(av[1]);
-	//print_map(map);
 	start(map);
 }

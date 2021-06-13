@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:21:31 by mmehran           #+#    #+#             */
-/*   Updated: 2021/06/13 16:41:24 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/06/13 20:18:48 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	render_next_frame(t_vars *vars)
 	draw_map(vars, vars->map);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	vars->up_to_date = 1;
+	return (0);
 }
 
 void	start(t_map *map)

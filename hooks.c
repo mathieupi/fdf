@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:28:01 by mmehran           #+#    #+#             */
-/*   Updated: 2021/06/13 17:05:37 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/06/13 23:44:16 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	close_program(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->img.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	free(vars->mlx);
-	write(1, "closeee\n", 8);
 	exit(0);
 }
 
@@ -45,9 +44,9 @@ void	do_scaling(int keycode, t_vars *vars)
 	if (keycode == 'j')
 		vars->scale_h -= 0.01;
 	if (keycode == 'w')
-		vars->scale += 1;
+		vars->scale += 0.5;
 	if (keycode == 's')
-		vars->scale -= 1;
+		vars->scale -= 0.5;
 }
 
 void	do_translation(int keycode, t_vars *vars)
@@ -77,4 +76,5 @@ int	key_hook(int keycode, t_vars *vars)
 	do_translation(keycode, vars);
 	do_scaling(keycode, vars);
 	vars->up_to_date = 0;
+	return (0);
 }
