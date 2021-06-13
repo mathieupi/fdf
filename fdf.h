@@ -6,14 +6,14 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/10 18:44:49 by mmehran           #+#    #+#             */
-/*   Updated: 2021/06/13 23:26:43 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/06/14 00:50:42 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include <math.h>
-# include "minilibx-linux/mlx.h"
+# include "minilibx/mlx.h"
 # include <stdlib.h>
 # include "./libft/libft.h"
 # define BONUS 0

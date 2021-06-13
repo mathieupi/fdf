@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:28:01 by mmehran           #+#    #+#             */
-/*   Updated: 2021/06/13 23:44:16 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/06/14 00:47:19 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,33 @@ void	close_program(t_vars *vars)
 
 void	do_scaling(int keycode, t_vars *vars)
 {
-	if (keycode == 'u')
+	if (keycode == KEY_U)
 		vars->scale_h += 0.01;
-	if (keycode == 'j')
+	if (keycode == KEY_J)
 		vars->scale_h -= 0.01;
-	if (keycode == 'w')
+	if (keycode == KEY_W)
 		vars->scale += 0.5;
-	if (keycode == 's')
+	if (keycode == KEY_S)
 		vars->scale -= 0.5;
 }
 
 void	do_translation(int keycode, t_vars *vars)
 {
-	if (keycode == 65363)
+	if (keycode == ARROW_RIGHT)
 		vars->x_off += 10;
-	if (keycode == 65361)
+	if (keycode == ARROW_LEFT)
 		vars->x_off -= 10;
-	if (keycode == 65362)
+	if (keycode == ARROW_UP)
 		vars->y_off -= 10;
-	if (keycode == 65364)
+	if (keycode == ARROW_DOWN)
 		vars->y_off += 10;
-	if (keycode == 't')
+	if (keycode == KEY_T)
 		vars->angle_pitch += 1;
-	if (keycode == 'g')
+	if (keycode == KEY_G)
 		vars->angle_pitch -= 1;
-	if (keycode == 'f')
+	if (keycode == KEY_F)
 		vars->angle_yaw += 1;
-	if (keycode == 'h')
+	if (keycode == KEY_H)
 		vars->angle_yaw -= 1;
 }
 
