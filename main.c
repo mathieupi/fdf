@@ -6,7 +6,7 @@
 /*   By: mmehran <mmehran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 14:21:38 by mmehran           #+#    #+#             */
-/*   Updated: 2021/06/14 00:01:57 by mmehran          ###   ########.fr       */
+/*   Updated: 2021/06/14 13:58:06 by mmehran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_map	*get_map(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		write(2, "Error map doesn't exist :/\n", 4);
+		write(2, "Error couldn't open the map :/\n", 31);
 		exit(0);
 	}
 	map = malloc(sizeof(t_map));
@@ -86,7 +86,7 @@ t_map	*get_map(char *file)
 	close(fd);
 	if (code)
 	{
-		write(2, "Error map isn't a rectangle :/\n", 28);
+		write(2, "Error map isn't a rectangle :/\n", 31);
 		free(map);
 		exit(0);
 	}
