@@ -27,7 +27,7 @@ $(NAME): $(OBJS)
 	make -C ./minilibx
 	cp ./minilibx/libmlx.dylib ./
 	make -C ./libft
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS) -framework OpenGL -framework AppKit
 
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<
